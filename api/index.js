@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
+const {BASE_URL} = require('./utils/UrlContants');
 
 const app = express();
 
@@ -37,7 +38,7 @@ const userRoutes = require('./routes/users');
 const itemRoutes = require('./routes/items');
 
 // Routes
-app.use('/api/users', userRoutes);
+app.use(BASE_URL.USER, userRoutes);
 app.use('/api/items', itemRoutes);
 
 // Root route with API documentation
