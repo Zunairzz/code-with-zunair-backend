@@ -38,7 +38,7 @@ const userRoutes = require('./routes/users');
 const itemRoutes = require('./routes/items');
 
 // Routes
-app.use(BASE_URL.USER, userRoutes);
+app.use('/api/users', userRoutes);
 app.use('/api/items', itemRoutes);
 
 // Root route with API documentation
