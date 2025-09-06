@@ -2,19 +2,19 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
-const {BASE_URL} = require('./utils/UrlContants');
+const {BASE_URLS} = require('./utils/UrlContants');
 
 const app = express();
 
 // Middleware
 app.use(cors({
-    origin: process.env.NODE_ENV === 'production'
+    origin: process.env.NODE_ENV === 'prod'
         ? ['https://your-frontend-domain.vercel.app'] // Replace with your Vite app domain
         : ['http://localhost:5173', 'http://127.0.0.1:5173'], // Vite default ports
     credentials: true
 }));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({extended: true}));
 
 // MongoDB connection
 const connectDB = async () => {
@@ -38,8 +38,8 @@ const userRoutes = require('./routes/users');
 const itemRoutes = require('./routes/items');
 
 // Routes
-app.use(BASE_URL.USER, userRoutes);
-app.use('/api/items', itemRoutes);
+app.use(BASE_URLS.USER, userRoutes);
+app.use(BASE_URLS.ITEMS, itemRoutes);
 
 // Root route with API documentation
 app.get('/', (req, res) => {
